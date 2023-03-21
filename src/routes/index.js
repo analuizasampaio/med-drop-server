@@ -9,4 +9,7 @@ router.get("/api/healthchecker", (request, response)=>{
         "message": "Build CRUD API with Node.js and Sequelize",
     })
 })
+
+
+
 module.exports = router
