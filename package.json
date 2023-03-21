@@ -1,0 +1,29 @@
+{
+  "name": "med-drop-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/analuizasampaio/med-drop-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/analuizasampaio/med-drop-server/issues"
+  },
+  "homepage": "https://github.com/analuizasampaio/med-drop-server#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sequelize": "^6.29.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21",
+    "sequelize-cli": "^6.6.0"
+  }
+}
