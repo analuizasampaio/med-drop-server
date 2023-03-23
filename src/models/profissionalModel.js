@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize, DataTypes, Model) => {
-  class Pacientes extends Model {}
+  class Profissional extends Model {}
 
-  Pacientes.init({
+  Profissional.init({
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -19,7 +19,6 @@ module.exports = (sequelize, Sequelize, DataTypes, Model) => {
     telefone: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true,
     },
     senha: {
       type: DataTypes.STRING(100),
@@ -28,13 +27,22 @@ module.exports = (sequelize, Sequelize, DataTypes, Model) => {
     cpf: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true,
+    },
+    categoria: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      unique: false,
+    },
+    empresa: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      unique: false,
     },
     endereco: {
-        type: DataTypes.STRING(100),
-        allowNull: false,
-        unique: false,
-      },
+      type: DataTypes.STRING(100),
+      allowNull: false,
+      unique: false,
+    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
@@ -47,7 +55,7 @@ module.exports = (sequelize, Sequelize, DataTypes, Model) => {
     },
   }, {
     sequelize,
-    modelName: "paciente"
+    modelName: "profissional"
   });
-  return Pacientes
+  return Profissional
 };

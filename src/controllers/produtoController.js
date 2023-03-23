@@ -1,40 +1,40 @@
 const db = require("../models");
-const pacienteModel = db.pacientes;
+const produtoModel = db.produtos;
 // const Op = db.Sequelize.Op;
 
 const create = (req, res) => {
-  // Create a Tutorial
-  const paciente = {
+  // Create a Pciente
+  const produto = {
     nome: req.body.nome,
-    email: req.body.email,
-    telefone: req.body.telefone,
-    senha: req.body.senha,
-    cpf: req.body.cpf,
+    categoria: req.body.categoria,
+    descricao: req.body.descricao,
+    valor: req.body.valor,
+    quantidade: req.body.quantidade,
     endereco: req.body.endereco,
 
   };
 
-  pacienteModel.create(paciente)
+  produtoModel.create(produto)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Paciente.",
+          err.message || "Some error occurred while creating the produto.",
       });
     });
 };
 
 const getAll = (req, res) => {
-    pacienteModel.findAll()
+    produtoModel.findAll()
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving pacientes."
+          err.message || "Some error occurred while retrieving produtos."
       });
     });
 }
@@ -43,19 +43,19 @@ const getById = (req, res) => {
 
     const id = req.params.id;
 
-    pacienteModel.findByPk(id)
+    produtoModel.findByPk(id)
       .then(data => {
         if (data) {
           res.send(data);
         } else {
           res.status(404).send({
-            message: `Cannot find Paciente with id=${id}.`
+            message: `Cannot find produto with id=${id}.`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error retrieving Paciente with id=" + id
+          message: "Error retrieving produto with id=" + id
         });
       });
 
@@ -65,44 +65,44 @@ const update = (req, res) => {
 
 }
 
-const deletePaciente = (req, res) => {
+const deleteProduto = (req, res) => {
 
     const id = req.params.id;
 
-    pacienteModel.destroy({
+    produtoModel.destroy({
       where: { id: id }
     })
       .then(num => {
         if (num == 1) {
           res.send({
-            message: `Paciente with id=${id} was deleted successfully!`
+            message: `produto with id=${id} was deleted successfully!`
           });
         } else {
           res.send({
-            message: `Cannot delete Paciente with id=${id}. Maybe Paciente was not found!`
+            message: `Cannot delete produto with id=${id}. Maybe produto was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete Paciente with id=" + id
+          message: "Could not delete produto with id=" + id
         });
       });
 
 }
 
 const deleteAll = (req, res) => {
-    pacienteModel.destroy({
+    produtoModel.destroy({
         where: {},
         truncate: false
       })
         .then(nums => {
-          res.send({ message: `${nums} Pacientes were deleted successfully!` });
+          res.send({ message: `${nums} produtos were deleted successfully!` });
         })
         .catch(err => {
           res.status(500).send({
             message:
-              err.message || "Some error occurred while removing all Pacientes."
+              err.message || "Some error occurred while removing all produtos."
           });
         });
 
@@ -113,9 +113,6 @@ module.exports = {
     create,
     getById,
     update,
-    deletePaciente,
-    deleteAll,
-
-
-    
+    deleteProduto,
+    deleteAll,    
 }

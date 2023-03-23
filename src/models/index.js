@@ -24,11 +24,11 @@ const dbConfig = require("../config/dbConfig")
   db.sequelize = sequelize;
   db.Sequelize = Sequelize;
 
-  db.pacientes = require("../models/pacienteModel")(
-    sequelize,
-    Sequelize,
-    DataTypes,
-    Model
-  );
+  db.pacientes = require("../models/pacienteModel")(sequelize,Sequelize,DataTypes, Model);
+  db.empresas = require("../models/empresaModel")(sequelize,Sequelize,DataTypes, Model);
+  db.produtos = require("../models/produtoModel")(sequelize,Sequelize,DataTypes, Model);
+  db.profissionais = require("../models/profissionalModel")(sequelize,Sequelize,DataTypes, Model);
+
+
 
   module.exports = db;
