@@ -1,4 +1,6 @@
 const db = require("../models");
+const jwt = require('jsonwebtoken');
+
 const profissionalModel = db.profissionais;
 // const Op = db.Sequelize.Op;
 
@@ -27,6 +29,36 @@ const create = (req, res) => {
       });
     });
 };
+
+const login = async (req, res) => {
+  const { email, senha } = req.body;
+
+   //find a user by their email
+   const user = await profissionalModel.findOne({
+     where: {
+     email: email}
+  });
+
+  if (user){
+    if(user.senha == senha ){
+      token = jwt.sign({ "id" : user.id,"email" : user.email,"name":user.name },process.env.SECRET);
+      res.status(200).send({ token : token });
+      console.log(user)
+    } else {
+      res.status(500).send({
+        message:
+           "Senha ou email incorretos",
+      });
+    }
+
+  }else{
+    res.status(500).send({
+      message:
+         "Senha ou email incorretos",
+    })
+  }
+
+}
 
 const getAll = (req, res) => {
     profissionalModel.findAll()
@@ -117,7 +149,6 @@ module.exports = {
     update,
     deleteProfissional,
     deleteAll,
-
-
+    login
     
 }

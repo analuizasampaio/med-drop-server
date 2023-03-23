@@ -16,7 +16,7 @@ const create = (req, res) => {
 
   empresaModel.create(empresa)
     .then((data) => {
-      res.send(data);
+      res.status(201).send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -25,6 +25,8 @@ const create = (req, res) => {
       });
     });
 };
+
+
 
 const getAll = (req, res) => {
     empresaModel.findAll()
@@ -114,6 +116,5 @@ module.exports = {
     getById,
     update,
     deleteEmpresa,
-    deleteAll,
-    
+    deleteAll
 }

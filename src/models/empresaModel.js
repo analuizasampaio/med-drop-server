@@ -19,7 +19,6 @@ module.exports = (sequelize, Sequelize, DataTypes, Model) => {
     telefone: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true,
     },
     senha: {
       type: DataTypes.STRING(100),

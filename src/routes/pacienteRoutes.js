@@ -9,6 +9,8 @@ router.get("/:id", controller.getById)
 
 router.post("/cadastrar", controller.create)
 
+router.post("/login", controller.login)
+
 router.put("/:id", controller.update)
 
 router.delete("/:id", controller.deletePaciente);

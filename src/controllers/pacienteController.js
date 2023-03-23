@@ -1,4 +1,6 @@
 const db = require("../models");
+const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 const pacienteModel = db.pacientes;
 // const Op = db.Sequelize.Op;
 
@@ -16,7 +18,7 @@ const create = (req, res) => {
 
   pacienteModel.create(paciente)
     .then((data) => {
-      res.send(data);
+      res.status(201).send(data);
     })
     .catch((err) => {
       res.status(500).send({
@@ -25,6 +27,36 @@ const create = (req, res) => {
       });
     });
 };
+
+const login = async (req, res) => {
+  const { email, senha } = req.body;
+
+   //find a user by their email
+   const user = await pacienteModel.findOne({
+     where: {
+     email: email}
+  });
+
+  if (user){
+    if(user.senha == senha ){
+      token = jwt.sign({ "id" : user.id,"email" : user.email,"name":user.name },process.env.SECRET);
+      res.status(200).send({ token : token });
+      console.log(user)
+    } else {
+      res.status(500).send({
+        message:
+           "Senha ou email incorretos",
+      });
+    }
+
+  }else{
+    res.status(500).send({
+      message:
+         "Senha ou email incorretos",
+    })
+  }
+
+}
 
 const getAll = (req, res) => {
     pacienteModel.findAll()
@@ -115,6 +147,7 @@ module.exports = {
     update,
     deletePaciente,
     deleteAll,
+    login
 
 
     
