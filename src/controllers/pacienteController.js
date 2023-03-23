@@ -65,9 +65,44 @@ const update = (req, res) => {
 
 const deletePaciente = (req, res) => {
 
+    const id = req.params.id;
+
+    pacienteModel.destroy({
+      where: { id: id }
+    })
+      .then(num => {
+        if (num == 1) {
+          res.send({
+            message: `Paciente with id=${id} was deleted successfully!`
+          });
+        } else {
+          res.send({
+            message: `Cannot delete Paciente with id=${id}. Maybe Paciente was not found!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Could not delete Paciente with id=" + id
+        });
+      });
+
 }
 
 const deleteAll = (req, res) => {
+    pacienteModel.destroy({
+        where: {},
+        truncate: false
+      })
+        .then(nums => {
+          res.send({ message: `${nums} Pacientes were deleted successfully!` });
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while removing all Pacientes."
+          });
+        });
 
 }
 
