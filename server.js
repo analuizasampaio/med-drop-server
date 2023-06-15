@@ -1,6 +1,6 @@
 const app = require("./src/app");
 
-const PORT = 8080;
+const PORT = 3080;
 
 const db = require("./src/models");
 db.sequelize

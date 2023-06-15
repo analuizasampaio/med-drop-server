@@ -97,7 +97,7 @@ const deleteAll = (req, res) => {
         truncate: false
       })
         .then(nums => {
-          res.send({ message: `${nums} produtos were deleted successfully!` });
+          res.send({ message: `${nums} produtos foram dleetados com sucesso!` });
         })
         .catch(err => {
           res.status(500).send({

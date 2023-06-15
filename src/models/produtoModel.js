@@ -8,6 +8,11 @@ module.exports = (sequelize, Sequelize, DataTypes, Model) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
+      priceId: {
+        type: DataTypes.STRING(100),
+        allowNull: false,
+        unique: false,
+      },
       nome: {
         type: DataTypes.STRING(100),
         allowNull: false,
@@ -15,7 +20,7 @@ module.exports = (sequelize, Sequelize, DataTypes, Model) => {
       },
       categoria: {
         type: DataTypes.STRING(100),
-        allowNull: false,
+        allowNull: true,
         unique: false,
       },
       descricao: {
