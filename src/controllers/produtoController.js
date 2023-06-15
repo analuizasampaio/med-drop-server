@@ -6,6 +6,7 @@ const create = (req, res) => {
   // Create a Pciente
   const produto = {
     nome: req.body.nome,
+    priceId: req.body.priceId,
     categoria: req.body.categoria,
     descricao: req.body.descricao,
     valor: req.body.valor,

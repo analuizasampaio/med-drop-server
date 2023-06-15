@@ -40,7 +40,7 @@ const login = async (req, res) => {
   if (user){
     if(user.senha == senha ){
       token = jwt.sign({ "id" : user.id,"email" : user.email,"name":user.name },process.env.SECRET);
-      res.status(200).send({ token : token });
+      res.status(200).send({ token : token, id: user.id, email:user.email, nome: user.nome});
       console.log(user)
     } else {
       res.status(500).send({
