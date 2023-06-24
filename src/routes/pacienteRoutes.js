@@ -7,7 +7,7 @@ router.get("/", controller.getAll)
 
 router.get("/:id", controller.getById)
 
-router.post("/cadastrar", controller.create)
+router.post("/cadastrar/novo", controller.create)
 
 router.post("/login", controller.login)
 

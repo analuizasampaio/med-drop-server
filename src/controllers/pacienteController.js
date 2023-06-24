@@ -37,24 +37,16 @@ const login = async (req, res) => {
      email: email}
   });
 
-  if (user){
-    if(user.senha == senha ){
+    if(user && user.senha == senha ){
       token = jwt.sign({ "id" : user.id,"email" : user.email,"name":user.name },process.env.SECRET);
       res.status(200).send({ token : token, id: user.id, email:user.email, nome: user.nome});
       console.log(user)
     } else {
-      res.status(500).send({
+      res.status(403).send({
         message:
            "Senha ou email incorretos",
       });
     }
-
-  }else{
-    res.status(500).send({
-      message:
-         "Senha ou email incorretos",
-    })
-  }
 
 }
 
